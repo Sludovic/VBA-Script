@@ -1,0 +1,10 @@
+Sub ClearAllEmpty()
+    Set wbook = ActiveWorkbook
+    For Each sht In wbook.Worksheets
+       sht.Activate
+       sht.Cells.SpecialCells(xlCellTypeBlanks).Select
+       Selection.ClearContents
+       Selection.ClearFormats ' edit: clear formats too
+       sht.Cells(1, 1).Select ' edit: select the first cell to cancel selection of the whole sheet
+    Next sht
+End Sub
