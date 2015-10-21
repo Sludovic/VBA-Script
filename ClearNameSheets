@@ -1,0 +1,22 @@
+' I use this one to clean name of sheets before importing the file in SQL Server
+Sub ClearNameSheets()
+    Set wbook = ActiveWorkbook
+    For Each sht In wbook.Worksheets
+        sht.Name = StripAccent(Replace(Replace(sht.Name, "'", ""), " ", "_"))
+    Next sht
+End Sub
+
+' Next function From http://www.extendoffice.com/documents/excel/707-excel-replace-accented-characters.html
+Function StripAccent(thestring As String)
+Dim A As String * 1
+Dim B As String * 1
+Dim i As Integer
+Const AccChars = "ŠŽšžŸÀÁÂÃÄÅÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖÙÚÛÜÝàáâãäåçèéêëìíîïðñòóôõöùúûüýÿ"
+Const RegChars = "SZszYAAAAAACEEEEIIIIDNOOOOOUUUUYaaaaaaceeeeiiiidnooooouuuuyy"
+For i = 1 To Len(AccChars)
+A = Mid(AccChars, i, 1)
+B = Mid(RegChars, i, 1)
+thestring = Replace(thestring, A, B)
+Next
+StripAccent = thestring
+End Function
