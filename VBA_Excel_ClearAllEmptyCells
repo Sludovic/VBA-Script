@@ -3,7 +3,7 @@ On Error Resume Next
     Set wbook = ActiveWorkbook
     For Each sht In wbook.Worksheets
        sht.Activate
-       Selection.Clear
+       Selection.Deselect
        If IsEmpty(sht.Cells.SpecialCells(xlCellTypeBlanks)) = False Then
             sht.Cells.SpecialCells(xlCellTypeBlanks).Select
             Selection.ClearContents
