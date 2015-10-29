@@ -2,13 +2,8 @@ Sub ClearAllEmpty()
 On Error Resume Next
     Set wbook = ActiveWorkbook
     For Each sht In wbook.Worksheets
-       sht.Activate
-       Selection.Deselect
-       If IsEmpty(sht.Cells.SpecialCells(xlCellTypeBlanks)) = False Then
-            sht.Cells.SpecialCells(xlCellTypeBlanks).Select
-            Selection.ClearContents
-            Selection.ClearFormats ' edit: clear formats too
-       End If
-       Selection.Clear
+        sht.Activate
+        Cells(1, 1).Select
+        sht.Cells.SpecialCells(xlCellTypeBlanks).Clear
     Next sht
 End Sub
